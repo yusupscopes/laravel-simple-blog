@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index')->name('blog');
+
+Route::get('/blog/{post}', 'PostController@show')->name('blog.single');
 
 Auth::routes();
 
