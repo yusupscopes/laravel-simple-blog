@@ -22,6 +22,20 @@ class Post extends Model
         return 'slug';
     }
 
+    public function scopeFilter($queries, $filter)
+    {
+        if (isset($filter['q']) && $q = strtolower($filter['q'])) {
+            $queries->where(function($query) use ($q) {
+                $query->whereHas('author', function ($qr) use ($q) {
+                    $qr->where('name', 'LIKE', "%{$q}%");
+                });
+                $query->orWhereHas('category', function ($qr) use ($q) {
+                    $qr->where('title', 'LIKE', "%{$q}%");
+                });
+            });
+        }
+    }
+
     public function getBodyHtmlAttribute()
     {
         return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;

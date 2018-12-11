@@ -36,6 +36,12 @@
                 </div>
             @endif
 
+            {!! Form::open(['route' => 'blog', 'method' => 'get']) !!}
+                <div class="form-group">
+                    {!! Form::text('q', request('q'), ['class' => 'form-control', 'placeholder' => 'Search For...']) !!}
+                </div>
+            {!! Form::close() !!}
+
             @foreach ($posts as $post)
                 <a href="{{ route('blog.single', $post->slug) }}">
                     <h2 class="post-title">
@@ -52,6 +58,6 @@
 
     <!-- Pager -->
     <div class="clearfix">
-      {{$posts->links()}}
+      {{$posts->appends(request()->only(['q']))->links()}}
     </div>
 @endsection
