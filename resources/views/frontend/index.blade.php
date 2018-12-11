@@ -33,7 +33,7 @@
                 </a>
                 <p class="post-meta">Posted by
                     <a href="#">{{ $post->author->name }}</a>
-                    on {{ $post->created_at }}</p>
+                    on {{ $post->created_at }} || Category: <a href="#"> {{ $post->category->title }}</a></p>
             @endforeach
         @endif
     </div>

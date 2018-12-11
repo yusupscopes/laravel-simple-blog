@@ -13,6 +13,8 @@
 
 Route::get('/', 'PostController@index')->name('blog');
 
+Route::get('/categories', 'PostController@categories')->name('categories');
+
 Route::get('/blog/{post}', 'PostController@show')->name('blog.single');
 
 Auth::routes();

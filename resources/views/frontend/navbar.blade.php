@@ -12,7 +12,7 @@
           <a class="nav-link" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="post.html">Category</a>
+            <a class="nav-link" href="{{ route('categories') }}">Category</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html">About</a>
