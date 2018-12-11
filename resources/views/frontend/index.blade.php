@@ -25,6 +25,12 @@
                 <p>Nothing Found</p>
             </div>
         @else
+            @if (isset($categoryName))
+                <div class="alert alert-info">
+                    <p>Category: <strong>{{ $categoryName }}</strong></p>
+                </div>
+            @endif
+            
             @foreach ($posts as $post)
                 <a href="{{ route('blog.single', $post->slug) }}">
                     <h2 class="post-title">

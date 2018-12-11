@@ -25,4 +25,13 @@ class PostController extends Controller
         $categories = Category::all();
         return view('frontend.categories', compact('categories'));
     }
+
+    public function category(Category $category)
+    {
+        $categoryName = $category->title;
+
+        $posts = $category->posts()->with('author')->latest()->simplePaginate(4);
+
+        return view('frontend.index', compact('posts', 'categoryName'));
+    }
 }
