@@ -11,8 +11,8 @@
             <div class="post-heading">
               <h1>{{ $post->title }}</h1>
               <span class="meta">Posted by
-                <a href="#">{{ $post->author->name }}</a>
-                on {{ $post->created_at }}</span>
+                <a href="{{ route('author', $post->author->slug ) }}">{{ $post->author->name }}</a>
+                on {{ $post->created_at }} || Category: <a href="{{ route('category', $post->category->slug) }}"> {{ $post->category->title }}</a></span>
             </div>
           </div>
         </div>

@@ -12,6 +12,11 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -20,10 +25,5 @@ class Post extends Model
     public function getBodyHtmlAttribute()
     {
         return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
-    }
-
-    public function category()
-    {
-        return $this->belongsTo('App\Category');
     }
 }

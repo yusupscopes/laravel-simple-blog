@@ -30,7 +30,12 @@
                     <p>Category: <strong>{{ $categoryName }}</strong></p>
                 </div>
             @endif
-            
+            @if (isset($authorName))
+                <div class="alert alert-info">
+                    <p>Author: <strong>{{ $authorName }}</strong></p>
+                </div>
+            @endif
+
             @foreach ($posts as $post)
                 <a href="{{ route('blog.single', $post->slug) }}">
                     <h2 class="post-title">
@@ -38,8 +43,8 @@
                     </h2>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="#">{{ $post->author->name }}</a>
-                    on {{ $post->created_at }} || Category: <a href="#"> {{ $post->category->title }}</a></p>
+                    <a href="{{ route('author', $post->author->slug ) }}">{{ $post->author->name }}</a>
+                    on {{ $post->created_at }} || Category: <a href="{{ route('category', $post->category->slug) }}"> {{ $post->category->title }}</a></p>
             @endforeach
         @endif
     </div>

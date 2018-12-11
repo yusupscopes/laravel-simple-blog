@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 use App\Post;
 
 class PostController extends Controller
 {
+    protected $limit = 4;
+
     public function index()
     {
-        $posts = Post::with('author')->latest()->simplePaginate(4);
+        $posts = Post::with('author')->latest()->simplePaginate($this->limit);
 
         return view('frontend.index', compact('posts'));
     }
@@ -30,8 +33,17 @@ class PostController extends Controller
     {
         $categoryName = $category->title;
 
-        $posts = $category->posts()->with('author')->latest()->simplePaginate(4);
+        $posts = $category->posts()->with('author')->latest()->simplePaginate($this->limit);
 
         return view('frontend.index', compact('posts', 'categoryName'));
+    }
+
+    public function author(User $author)
+    {
+        $authorName = $author->name;
+
+        $posts = $author->posts()->with('category')->latest()->simplePaginate($this->limit);
+
+        return view('frontend.index', compact('posts', 'authorName'));
     }
 }
