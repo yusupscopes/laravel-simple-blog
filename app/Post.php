@@ -32,6 +32,9 @@ class Post extends Model
                 $query->orWhereHas('category', function ($qr) use ($q) {
                     $qr->where('title', 'LIKE', "%{$q}%");
                 });
+                $query->orWhere(function ($qr) use ($q) {
+                    $qr->where('title', 'LIKE', "%{$q}%");
+                });
             });
         }
     }

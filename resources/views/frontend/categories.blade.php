@@ -27,7 +27,6 @@
                         <div class="card-header"></div>
                         <div class="card-body text-primary">
                             <h5 class="card-title"><a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a></h5>
-                            <p class="card-text">Some quick example text.</p>
                         </div>
                     </div>
                 </div>

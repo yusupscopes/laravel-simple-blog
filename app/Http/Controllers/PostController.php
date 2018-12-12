@@ -46,4 +46,12 @@ class PostController extends Controller
 
         return view('frontend.index', compact('posts', 'authorName'));
     }
+
+    public function about()
+    {
+        $author = User::findOrFail(1);
+        $posts = $author->posts()->latest()->get();
+        // dd($author);
+        return view('frontend.about', compact('author', 'posts'));
+    }
 }
